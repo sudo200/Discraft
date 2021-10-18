@@ -1,8 +1,54 @@
 package at.sudo200.discraft.discraft.config;
 
+import com.mumfrey.liteloader.modconfig.AbstractConfigPanel;
 import com.mumfrey.liteloader.modconfig.ConfigPanelHost;
 
-public class ConfigPanel implements com.mumfrey.liteloader.modconfig.ConfigPanel {
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class ConfigPanel extends AbstractConfigPanel {
+    private final Config config = Config.get();
+    private final Map<Integer, ConfigTextField> fields = new HashMap<>();
+
+    private interface FieldIDs {
+        int clientID = 1;
+        int menuMsg = 3;
+        int singleplayerMsg = 5;
+        int multiplayerMsg = 7;
+        int singleplayerDetailFormat = 9;
+        int multiplayerDetailFormat = 11;
+    }
+
+    /**
+     * Stub for implementors, this is similar to  and
+     * consumers should add all of their controls here
+     *
+     * @param host
+     */
+    @Override
+    protected void addOptions(ConfigPanelHost host) {
+        final int width = host.getWidth() - 10;
+
+        this.addLabel(0, 1, 5, width, 10, 0xFFFFFF, "Client ID", "You can create you own at https://discord.com/developers/applications");
+        fields.put(FieldIDs.clientID, this.addTextField(FieldIDs.clientID,0,  20, width, 20).setText(config.getClientID()).setRegex("^\\d+$", false));
+        //--------------------------------------------------------------------------------------------
+        this.addLabel(2, 1, 55, width, 10, 0xFFFFFF, "Menu message", "Shown while in main- or game menu");
+        fields.put(FieldIDs.menuMsg, this.addTextField(FieldIDs.menuMsg, 0, 70, width, 20).setText(config.getMenuMsg()).setMaxLength(127));
+        //--------------------------------------------------------------------------------------------
+        this.addLabel(4, 1, 105, width, 10, 0xFFFFFF, "Singleplayer message", "Shown while playing singleplayer");
+        fields.put(FieldIDs.singleplayerMsg, this.addTextField(FieldIDs.singleplayerMsg, 0, 120, width, 20).setText(config.getSingleplayerMsg()).setMaxLength(127));
+        //--------------------------------------------------------------------------------------------
+        this.addLabel(6, 1, 155, width, 10, 0xFFFFFF, "Multiplayer message", "Shown while playing multiplayer");
+        fields.put(FieldIDs.multiplayerMsg, this.addTextField(FieldIDs.multiplayerMsg, 1, 170, width, 20).setText(config.getMultiplayerMsg()).setMaxLength(127));
+        //--------------------------------------------------------------------------------------------
+        this.addLabel(8, 1, 205, width, 10, 0xFFFFFF, "Singleplayer format string", "Supports $WORLDNAME$, $DIMENSION$ and $BIOME$");
+        fields.put(FieldIDs.singleplayerDetailFormat, this.addTextField(FieldIDs.singleplayerDetailFormat, 1, 220, width, 20).setText(config.getSingleplayerDetailFormat()).setMaxLength(127));
+        //--------------------------------------------------------------------------------------------
+        this.addLabel(10, 1, 255, width, 10, 0xFFFFFF, "Multiplayer format string", "Supports $SERVERIP$, $SERVERNAME$ and $SERVERMOTD$");
+        fields.put(FieldIDs.multiplayerDetailFormat, this.addTextField(FieldIDs.multiplayerDetailFormat, 1, 270, width, 20).setText(config.getMultiplayerDetailFormat()).setMaxLength(127));
+        //--------------------------------------------------------------------------------------------
+    }
 
     /**
      * Panels should return the text to display at the top of the config panel
@@ -14,112 +60,15 @@ public class ConfigPanel implements com.mumfrey.liteloader.modconfig.ConfigPanel
     }
 
     /**
-     * Get the height of the content area for scrolling purposes, return -1 to
-     * disable scrolling.
-     */
-    @Override
-    public int getContentHeight() {
-        return -1;
-    }
-
-    /**
-     * Called when the panel is displayed, initialise the panel (read settings,
-     * etc)
-     *
-     * @param host panel host
-     */
-    @Override
-    public void onPanelShown(ConfigPanelHost host) {
-
-    }
-
-    /**
-     * Called when the window is resized whilst the panel is active
-     *
-     * @param host panel host
-     */
-    @Override
-    public void onPanelResize(ConfigPanelHost host) {
-
-    }
-
-    /**
      * Called when the panel is closed, panel should save settings
      */
     @Override
     public void onPanelHidden() {
-
-    }
-
-    /**
-     * Called every tick
-     *
-     * @param host
-     */
-    @Override
-    public void onTick(ConfigPanelHost host) {
-    }
-
-    /**
-     * Draw the configuration panel
-     *
-     * @param host
-     * @param mouseX
-     * @param mouseY
-     * @param partialTicks
-     */
-    @Override
-    public void drawPanel(ConfigPanelHost host, int mouseX, int mouseY, float partialTicks) {
-
-    }
-
-    /**
-     * Called when a mouse button is pressed
-     *
-     * @param host
-     * @param mouseX
-     * @param mouseY
-     * @param mouseButton
-     */
-    @Override
-    public void mousePressed(ConfigPanelHost host, int mouseX, int mouseY, int mouseButton) {
-
-    }
-
-    /**
-     * Called when a mouse button is released
-     *
-     * @param host
-     * @param mouseX
-     * @param mouseY
-     * @param mouseButton
-     */
-    @Override
-    public void mouseReleased(ConfigPanelHost host, int mouseX, int mouseY, int mouseButton) {
-
-    }
-
-    /**
-     * Called when the mouse is moved
-     *
-     * @param host
-     * @param mouseX
-     * @param mouseY
-     */
-    @Override
-    public void mouseMoved(ConfigPanelHost host, int mouseX, int mouseY) {
-
-    }
-
-    /**
-     * Called when a key is pressed
-     *
-     * @param host
-     * @param keyChar
-     * @param keyCode
-     */
-    @Override
-    public void keyPressed(ConfigPanelHost host, char keyChar, int keyCode) {
-
+        config.setClientID(fields.get(FieldIDs.clientID).getText());
+        config.setMenuMsg(fields.get(FieldIDs.menuMsg).getText());
+        config.setSingleplayerMsg(fields.get(FieldIDs.singleplayerMsg).getText());
+        config.setMultiplayerMsg(fields.get(FieldIDs.multiplayerMsg).getText());
+        config.setSingleplayerDetailFormat(fields.get(FieldIDs.singleplayerDetailFormat).getText());
+        config.setMultiplayerDetailFormat(fields.get(FieldIDs.multiplayerDetailFormat).getText());
     }
 }

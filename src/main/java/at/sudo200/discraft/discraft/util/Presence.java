@@ -3,6 +3,7 @@ package at.sudo200.discraft.discraft.util;
 import net.arikia.dev.drpc.DiscordRichPresence;
 
 public class Presence extends DiscordRichPresence.Builder {
+    private static long startTime = System.currentTimeMillis();
 
     /**
      * Initiates a new instance of the Presence builder.
@@ -17,7 +18,7 @@ public class Presence extends DiscordRichPresence.Builder {
         final String text = getClass().getPackage() != null && getClass().getPackage().getImplementationVersion() != null
                 ? "Minecraft " + getClass().getPackage().getImplementationVersion()
                 : "Minecraft";
-        setStartTimestamps(System.currentTimeMillis());
+        setStartTimestamps(startTime);
         setBigImage("grass", text);
     }
 }

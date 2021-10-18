@@ -64,13 +64,13 @@ public class PresenceManager {
                                 .setDetails(
                                         config.getSingleplayerDetailFormat()
                                                 .replaceAll(
-                                                        "%WORLDNAME%",
+                                                        "\\$WORLDNAME\\$",
                                                         Objects.requireNonNull(minecraft.getIntegratedServer()).getWorldName()
                                                 ).replaceAll(
-                                                        "%BIOME%",
+                                                        "\\$BIOME\\$",
                                                         player.world.getBiome(new BlockPos(player.posX, player.posY, player.posZ)).getBiomeName()
                                                 ).replaceAll(
-                                                        "%DIMENSION%",
+                                                        "\\$DIMENSION\\$",
                                                         minecraft.getIntegratedServer().getWorld(player.dimension).provider.getDimensionType().getName()
                                                 )
                                 )
@@ -86,13 +86,13 @@ public class PresenceManager {
                                 .setDetails(
                                         config.getMultiplayerDetailFormat()
                                                 .replaceAll(
-                                                        "%SERVERIP%",
+                                                        "\\$SERVERIP\\$",
                                                         serverData.serverIP
                                                 ).replaceAll(
-                                                        "%SERVERNAME%",
+                                                        "\\$SERVERNAME\\$",
                                                         serverData.serverName
                                                 ).replaceAll(
-                                                        "%SERVERMOTD%",
+                                                        "\\$SERVERMOTD\\$",
                                                         serverData.serverMOTD
                                                 )
                                 )
