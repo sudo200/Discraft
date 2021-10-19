@@ -51,6 +51,15 @@ public class ConfigPanel extends AbstractConfigPanel {
     }
 
     /**
+     * Get the height of the content area for scrolling purposes, return -1 to
+     * disable scrolling.
+     */
+    @Override
+    public int getContentHeight() {
+        return (10 + 20) * 6 * 2;
+    }
+
+    /**
      * Panels should return the text to display at the top of the config panel
      * window.
      */
