@@ -37,7 +37,7 @@ allprojects {
 }
 
 group = 'at.sudo200.discraft'
-version = '1.0-SNAPSHOT'
+version = 'v1.0'
 archivesBaseName = 'Discraft'
 
 configurations {

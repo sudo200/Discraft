@@ -12,6 +12,7 @@ import net.arikia.dev.drpc.DiscordRPC;
 import net.minecraft.client.Minecraft;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Objects;
 
 public class LiteModDiscraft implements LiteMod, Tickable, Configurable {
@@ -28,11 +29,6 @@ public class LiteModDiscraft implements LiteMod, Tickable, Configurable {
      * sanity checking prior to initialisation
      */
     public LiteModDiscraft() {
-        DiscordRPC.discordInitialize(config.getClientID(), null, true);
-        DiscordRPC.discordUpdatePresence(
-                new Presence(config.getStartingMsg())
-                        .build()
-        );
     }
 
     /**
@@ -53,7 +49,7 @@ public class LiteModDiscraft implements LiteMod, Tickable, Configurable {
      */
     @Override
     public String getVersion() {
-        return "1.0-SNAPSHOT";
+        return "v1.0";
     }
 
     /**
@@ -64,6 +60,18 @@ public class LiteModDiscraft implements LiteMod, Tickable, Configurable {
      */
     @Override
     public void init(File configPath) {
+        config.setConfigPath(configPath);
+        try {
+            config.initConfigFile();
+        } catch (IOException e) {
+            System.err.println("Couldn't interface with the config file!");
+        }
+
+        DiscordRPC.discordInitialize(config.getClientID(), null, true);
+        DiscordRPC.discordUpdatePresence(
+                new Presence(config.getStartingMsg())
+                        .build()
+        );
     }
 
     /**

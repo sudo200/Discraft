@@ -30,23 +30,23 @@ public class ConfigPanel extends AbstractConfigPanel {
     protected void addOptions(ConfigPanelHost host) {
         final int width = host.getWidth() - 10;
 
-        this.addLabel(0, 1, 5, width, 10, 0xFFFFFF, "Client ID", "You can create you own at https://discord.com/developers/applications");
-        fields.put(FieldIDs.clientID, this.addTextField(FieldIDs.clientID,0,  20, width, 20).setText(config.getClientID()).setRegex("^\\d+$", false));
+        addLabel(0, 1, 5, width, 10, 0xFFFFFF, "Client ID", "You can create you own at https://discord.com/developers/applications");
+        fields.put(FieldIDs.clientID, this.addTextField(FieldIDs.clientID,0,  20, width, 20).setText(config.getClientID()).setRegex("^\\d+$", true));
         //--------------------------------------------------------------------------------------------
-        this.addLabel(2, 1, 55, width, 10, 0xFFFFFF, "Menu message", "Shown while in main- or game menu");
-        fields.put(FieldIDs.menuMsg, this.addTextField(FieldIDs.menuMsg, 0, 70, width, 20).setText(config.getMenuMsg()).setMaxLength(127));
+        addLabel(2, 1, 55, width, 10, 0xFFFFFF, "Menu message", "Shown while in main- or game menu");
+        fields.put(FieldIDs.menuMsg, this.addTextField(FieldIDs.menuMsg, 0, 70, width, 20).setText(config.getMenuMsg()));
         //--------------------------------------------------------------------------------------------
-        this.addLabel(4, 1, 105, width, 10, 0xFFFFFF, "Singleplayer message", "Shown while playing singleplayer");
-        fields.put(FieldIDs.singleplayerMsg, this.addTextField(FieldIDs.singleplayerMsg, 0, 120, width, 20).setText(config.getSingleplayerMsg()).setMaxLength(127));
+        addLabel(4, 1, 105, width, 10, 0xFFFFFF, "Singleplayer message", "Shown while playing singleplayer");
+        fields.put(FieldIDs.singleplayerMsg, this.addTextField(FieldIDs.singleplayerMsg, 0, 120, width, 20).setText(config.getSingleplayerMsg()));
         //--------------------------------------------------------------------------------------------
-        this.addLabel(6, 1, 155, width, 10, 0xFFFFFF, "Multiplayer message", "Shown while playing multiplayer");
-        fields.put(FieldIDs.multiplayerMsg, this.addTextField(FieldIDs.multiplayerMsg, 1, 170, width, 20).setText(config.getMultiplayerMsg()).setMaxLength(127));
+        addLabel(6, 1, 155, width, 10, 0xFFFFFF, "Multiplayer message", "Shown while playing multiplayer");
+        fields.put(FieldIDs.multiplayerMsg, this.addTextField(FieldIDs.multiplayerMsg, 1, 170, width, 20).setText(config.getMultiplayerMsg()));
         //--------------------------------------------------------------------------------------------
-        this.addLabel(8, 1, 205, width, 10, 0xFFFFFF, "Singleplayer format string", "Supports $WORLDNAME$, $DIMENSION$ and $BIOME$");
-        fields.put(FieldIDs.singleplayerDetailFormat, this.addTextField(FieldIDs.singleplayerDetailFormat, 1, 220, width, 20).setText(config.getSingleplayerDetailFormat()).setMaxLength(127));
+        addLabel(8, 1, 205, width, 10, 0xFFFFFF, "Singleplayer format string", "Supports $WORLDNAME$, $DIMENSION$ and $BIOME$");
+        fields.put(FieldIDs.singleplayerDetailFormat, this.addTextField(FieldIDs.singleplayerDetailFormat, 1, 220, width, 20).setText(config.getSingleplayerDetailFormat()));
         //--------------------------------------------------------------------------------------------
-        this.addLabel(10, 1, 255, width, 10, 0xFFFFFF, "Multiplayer format string", "Supports $SERVERIP$, $SERVERNAME$ and $SERVERMOTD$");
-        fields.put(FieldIDs.multiplayerDetailFormat, this.addTextField(FieldIDs.multiplayerDetailFormat, 1, 270, width, 20).setText(config.getMultiplayerDetailFormat()).setMaxLength(127));
+        addLabel(10, 1, 255, width, 10, 0xFFFFFF, "Multiplayer format string", "Supports $SERVERIP$, $SERVERNAME$ and $SERVERMOTD$");
+        fields.put(FieldIDs.multiplayerDetailFormat, this.addTextField(FieldIDs.multiplayerDetailFormat, 1, 270, width, 20).setText(config.getMultiplayerDetailFormat()));
         //--------------------------------------------------------------------------------------------
     }
 
@@ -70,5 +70,6 @@ public class ConfigPanel extends AbstractConfigPanel {
         config.setMultiplayerMsg(fields.get(FieldIDs.multiplayerMsg).getText());
         config.setSingleplayerDetailFormat(fields.get(FieldIDs.singleplayerDetailFormat).getText());
         config.setMultiplayerDetailFormat(fields.get(FieldIDs.multiplayerDetailFormat).getText());
+        config.saveConfigToFile();
     }
 }
