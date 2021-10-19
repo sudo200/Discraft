@@ -26,7 +26,7 @@ public class Config {
 
     private Config() {
         // Default values
-        config.clientID = "450485984333660181";
+        config.clientID = "900063459310456843";
 
         config.menuMsg = "In the menu";
         config.singleplayerMsg = "Playing Singleplayer";
