@@ -32,3 +32,8 @@ the LiteLoader window
 There are a lot of Discord rich presence mods for Forge, Fabric, etc. \
 However, Fabric is 1.14.x+ and Forge has to much overhead for just one mod. \
 This mod is for those people, who still play vanila 1.12.2 (like me 😁)
+
+## Contributing
+Contributions are always welcome! \
+Feel free to fork, modify and pull-request. \
+For Documentation visit the [javadocs](https://sudo200.github.io/Discraft)
