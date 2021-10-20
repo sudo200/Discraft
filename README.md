@@ -9,7 +9,7 @@ Minecraft.
 1. Get LiteLoader 1.12.2 [here](http://www.liteloader.com/download#snapshot_11220)
 2. Create a new profile with LiteLoader, start it once, close the game
 and open its directory
-3. Download **Discraft** [here]()
+3. Download **Discraft** [here](https://github.com/sudo200/Discraft/releases/latest)
 4. Drop **Discraft** into your `mods/`-Directory
 5. PROFIT!!!
 
