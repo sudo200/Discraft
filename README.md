@@ -3,7 +3,18 @@ Discraft is a Minecraft mod for LiteLoader, which adds Discord rich presence to
 Minecraft.
 
 ## Screenshots
-🚧 Under construction 🚧
+### States:
+**Starting** \
+![Starting](https://raw.githubusercontent.com/sudo200/Discraft/master/.github/images/starting.png)
+****
+**Menu** \
+![Menu](https://raw.githubusercontent.com/sudo200/Discraft/master/.github/images/menu.png)
+****
+**Singleplayer** \
+![Singleplayer](https://raw.githubusercontent.com/sudo200/Discraft/master/.github/images/singleplayer.png)
+****
+**Multiplayer** \
+![Multiplayer](https://raw.githubusercontent.com/sudo200/Discraft/master/.github/images/multiplayer.png)
 
 ## Installation
 1. Get LiteLoader 1.12.2 [here](http://www.liteloader.com/download#snapshot_11220)
